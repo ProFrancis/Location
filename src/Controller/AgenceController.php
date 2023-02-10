@@ -33,7 +33,7 @@ class AgenceController extends AbstractController
         }
 
         return $this->render('agence/index.html.twig', [
-            'controller_name' => 'Page Agence 🏠',
+            'controller_name' => 'Page Agence',
             'agences' => $agences,
             'formAgence' => $form->createView()
         ]);
@@ -46,20 +46,19 @@ class AgenceController extends AbstractController
         $getAgenceById = $repoAgence->find($id);
 
         return $this->render('agence/detail.html.twig', [
-            'controller_name' => 'Detail Agence 🏠',
+            'controller_name' => 'Detail Agence',
             'agence' => $getAgenceById,
 
         ]);
     }
 
     #[Route('/agence/update/{id}', name: 'update_agence')]
-    public function add(Agence $agence,Request $request, EntityManagerInterface $manager): Response
+    public function add(Agence $agence, Request $request, EntityManagerInterface $manager): Response
     {
         $form = $this->createForm(AgenceType::class, $agence);
         $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid())
-        {
+        if ($form->isSubmitted() && $form->isValid()) {
             $manager->persist($agence);
             $manager->flush();
 
@@ -68,7 +67,7 @@ class AgenceController extends AbstractController
         }
 
         return $this->render('agence/update.html.twig', [
-            'controller_name' => 'Update Agence 🏠',
+            'controller_name' => 'Update Agence',
             'formAgence' => $form->createView(),
             'agence' => $agence
         ]);
@@ -85,5 +84,4 @@ class AgenceController extends AbstractController
         $this->addFlash("success", "L'Agence N° " . $idAgence . " a bien été supprimée.");
         return $this->redirectToRoute("agence");
     }
-
 }

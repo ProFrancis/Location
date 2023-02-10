@@ -1,9 +1,49 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-	
-  {{ form(formAgence) }}
 
-	<a href="{{ path('agence') }}">Back</a>
+	<section class="container">
+
+		<div class="d-flex justify-content-center">
+			<img class="" src="{{ agence.photo }}" alt="" width="500">
+		</div>
+
+		{{ form_start(formAgence)}}
+		<div class="d-flex flex-column justify-content-between">
+			<div class="row">
+				<div class="col-md-6">
+					<div class="col-md-12">
+						{{ form_row(formAgence.titre) }}
+					</div>
+					<div class="col-md-12">
+						{{ form_row(formAgence.adresse) }}
+					</div>
+					<div class="col-md-12">
+						{{ form_row(formAgence.ville) }}
+					</div>
+					<div class="col-md-12">
+						{{ form_row(formAgence.cp) }}
+					</div>
+				</div>
+				{# ---- #}
+				<div class="col-md-6">
+					<div class="col-md-12">
+						{{ form_row(formAgence.photo) }}
+					</div>
+					<div class="col-md-12">
+						{{ form_row(formAgence.descirption) }}
+					</div>
+				</div>
+				{# ---- #}
+			</div>
+			<div class="row">
+				<button class="btn bg-primary text-light col-md-12 my-3">Valider</button>
+			</div>
+		</div>
+		{{ form_end(formAgence)}}
+
+		<a href="{{ path('agence') }}">Back</a>
+
+	</section>
 
 {% endblock %}

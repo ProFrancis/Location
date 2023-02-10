@@ -1,15 +1,19 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-	<section id="">
-		<img src="{{ vehicule.photo }}" alt="" width="500">
+	<section class="container">
+
+		<div class="d-flex justify-content-center">
+			<img class="" src="{{ vehicule.photo }}" alt="" width="500">
+		</div>
+
 		<p>{{ vehicule.titre }}	</p>
 		<p>{{ vehicule.marque }}	</p>
 		<p>{{ vehicule.modele }}	</p>
 		<p>{{ vehicule.description  }}	</p>
 		<p>{{ vehicule.PrixJournalier }} €	</p>
+    
+    <a href="{{ path('vehicule') }}">Back</a>
+
 	</section>
-
-	<a href="{{ path('vehicule') }}">Back</a>
-
 {% endblock %}

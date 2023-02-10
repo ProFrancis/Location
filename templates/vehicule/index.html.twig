@@ -4,9 +4,11 @@
 {% endblock %}
 
 {% block body %}
+
 	{% for notification in app.flashes('success') %}
 		<div>{{ notification }}</div>
 	{% endfor %}
+
 	<table class="table">
 		<thead>
 			<tr>

@@ -34,7 +34,7 @@ class VehiculeController extends AbstractController
         }
 
         return $this->render('vehicule/index.html.twig', [
-            'controller_name' => 'vehicule 🚗',
+            'controller_name' => 'Vehicule',
             'vehicules' => $query,
             'formVehicules' => $form->createView()
         ]);
@@ -47,7 +47,7 @@ class VehiculeController extends AbstractController
         $getVehiculeById = $repoVehicule->find($id);
 
         return $this->render('vehicule/detail.html.twig', [
-            'controller_name' => 'vehicule 🚗',
+            'controller_name' => 'Vehicule',
             'vehicule' => $getVehiculeById,
 
         ]);
@@ -68,7 +68,7 @@ class VehiculeController extends AbstractController
         }
 
         return $this->render('vehicule/update.html.twig', [
-            'controller_name' => 'Update Vehicule 🚗',
+            'controller_name' => 'Update Vehicule',
             'formVehicule' => $form->createView(),
             'vehicule' => $vehicule
         ]);

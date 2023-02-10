@@ -1,9 +1,49 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-	
-  {{ form(formVehicule) }}
+	<section class="container">
 
-	<a href="{{ path('vehicule') }}">Back</a>
+		<div class="d-flex justify-content-center">
+			<img class="" src="{{ vehicule.photo }}" alt="" width="500">
+		</div>
 
+		{{ form_start(formVehicule)}}
+		<div class="d-flex flex-column justify-content-between">
+			<div class="row">
+				<div class="col-md-6">
+					<div class="col-md-12">
+						{{ form_row(formVehicule.titre) }}
+					</div>
+					<div class="col-md-12">
+						{{ form_row(formVehicule.marque) }}
+					</div>
+					<div class="col-md-12">
+						{{ form_row(formVehicule.modele) }}
+					</div>
+					<div class="col-md-12">
+						{{ form_row(formVehicule.prix_journalier) }}
+					</div>
+				</div>
+				{# ---- #}
+				<div class="col-md-6">
+					<div class="col-md-12">
+						{{ form_row(formVehicule.photo) }}
+					</div>
+					<div class="col-md-12">
+						{{ form_row(formVehicule.agence) }}
+					</div>
+					<div class="col-md-12">
+						{{ form_row(formVehicule.description) }}
+					</div>
+				</div>
+				{# ---- #}
+			</div>
+			<div class="row">
+				<button class="btn bg-primary text-light col-md-12 my-3">Valider</button>
+			</div>
+		</div>
+		{{ form_end(formVehicule)}}
+
+		<a href="{{ path('vehicule') }}">Back</a>
+	</section>
 {% endblock %}

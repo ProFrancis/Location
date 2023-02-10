@@ -1,15 +1,21 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-	<section id="">
-		<img src="{{ agence.photo }}" alt="" width="500">
+	<section class="container">
+
+		<div class="d-flex justify-content-center">
+			<img class="" src="{{ agence.photo }}" alt="" width="500">
+		</div>
+
 		<p>{{ agence.titre }}	</p>
 		<p>{{ agence.adresse }}	</p>
 		<p>{{ agence.ville }}	</p>
 		<p>{{ agence.cp }}	</p>
 		<p>{{ agence.descirption }}	</p>
+
+		<a href="{{ path('agence') }}">Back</a>
+
 	</section>
 
-	<a href="{{ path('agence') }}">Back</a>
 
 {% endblock %}
