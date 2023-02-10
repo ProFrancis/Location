@@ -34,39 +34,55 @@ class VehiculeController extends AbstractController
         }
 
         return $this->render('vehicule/index.html.twig', [
-            'controller_name' => 'page vehicule',
+            'controller_name' => 'vehicule 🚗',
             'vehicules' => $query,
             'formVehicules' => $form->createView()
         ]);
     }
 
-    #[Route('/vehicule', name: 'get_vehicule')]
-    public function get(Request $request, VehiculeRepository $repoVehicule, EntityManagerInterface $manager): Response
+    #[Route('/get/vehicule/{id}', name: 'get_vehicule')]
+    public function get($id, VehiculeRepository $repoVehicule): Response
     {
- 
 
-        return $this->render('vehicule/index.html.twig', [
-            'controller_name' => 'page vehicule',
+        $getVehiculeById = $repoVehicule->find($id);
+
+        return $this->render('vehicule/detail.html.twig', [
+            'controller_name' => 'vehicule 🚗',
+            'vehicule' => $getVehiculeById,
+
         ]);
     }
 
-    #[Route('/vehicule', name: 'put_vehicule')]
-    public function put(Request $request, VehiculeRepository $repoVehicule, EntityManagerInterface $manager): Response
+    #[Route('/put/vehicule/{id}', name: 'put_vehicule')]
+    public function put(Request $request, Vehicule $vehicule, EntityManagerInterface $manager): Response
     {
- 
+        $form = $this->createForm(VehiculeType::class, $vehicule);
+        $form->handleRequest($request);
 
-        return $this->render('vehicule/index.html.twig', [
-            'controller_name' => 'page vehicule',
+        if ($form->isSubmitted() && $form->isValid()) {
+            $manager->persist($vehicule);
+            $manager->flush();
+
+            $this->addFlash("success", "Le Vehicule " . $vehicule->getTitre() . " a bien été modifiée.");
+            return $this->redirectToRoute("vehicule");
+        }
+
+        return $this->render('vehicule/update.html.twig', [
+            'controller_name' => 'Update Vehicule 🚗',
+            'formVehicule' => $form->createView(),
+            'vehicule' => $vehicule
         ]);
     }
 
-    #[Route('/vehicule', name: 'delete_vehicule')]
-    public function delete(Request $request, VehiculeRepository $repoVehicule, EntityManagerInterface $manager): Response
+    #[Route('/delete/vehicule/{id}', name: 'delete_vehicule')]
+    public function delete(Vehicule $vehicule, EntityManagerInterface $manager): Response
     {
- 
+        $idVehicule = $vehicule->getId();
 
-        return $this->render('vehicule/index.html.twig', [
-            'controller_name' => 'page vehicule',
-        ]);
+        $manager->remove($vehicule);
+        $manager->flush();
+
+        $this->addFlash("success", "Le Vehicule N° " . $idVehicule . " a bien été supprimée.");
+        return $this->redirectToRoute("vehicule");
     }
 }

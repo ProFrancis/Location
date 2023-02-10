@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<section id="">
+		<img src="{{ vehicule.photo }}" alt="" width="500">
+		<p>{{ vehicule.titre }}	</p>
+		<p>{{ vehicule.marque }}	</p>
+		<p>{{ vehicule.modele }}	</p>
+		<p>{{ vehicule.description  }}	</p>
+		<p>{{ vehicule.PrixJournalier }} €	</p>
+	</section>
+
+	<a href="{{ path('vehicule') }}">Back</a>
+
+{% endblock %}
