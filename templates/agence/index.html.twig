@@ -1,0 +1,83 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Agence
+{% endblock %}
+
+{% block body %}
+	{% for notification in app.flashes('success') %}
+		<div>{{ notification }}</div>
+	{% endfor %}
+	<table class="table">
+		<thead>
+			<tr>
+				<th scope="col">#</th>
+				<th scope="col">Titre</th>
+				<th scope="col">Adresse</th>
+				<th scope="col">Ville</th>
+				<th scope="col">Cp</th>
+				<th scope="col">Description</th>
+				<th scope="col">Photo</th>
+				<th scope="col">Actions</th>
+			</tr>
+		</thead>
+		<tbody class="table-group-divider">
+			{% for agence in agences %}
+				<tr>
+					<th scope="row">{{ agence.id }}</th>
+					<td>{{ agence.titre }}</td>
+					<td>{{ agence.adresse }}</td>
+					<td>{{ agence.ville }}</td>
+					<td>{{ agence.cp }}</td>
+					<td>{{ agence.descirption }}</td>
+					<td>
+						<img src="{{ agence.photo }}" alt="" width="250">
+					</td>
+					<td>
+						<a href="{{ path('detail_agence' , {'id' : agence.id } ) }}">Detail</a>
+						<a href="{{ path('update_agence' , {'id' : agence.id } ) }}">Modifier</a>
+						<a href="{{ path('delete_agence' , {'id' : agence.id } ) }}">Supprimer</a>
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<section class="container">
+
+		{{ form_start(formAgence)}}
+		<div class="d-flex flex-column justify-content-between">
+			<div class="row">
+				<div class="col-md-6">
+					<div class="col-md-12">
+						{{ form_row(formAgence.titre) }}
+					</div>
+					<div class="col-md-12">
+						{{ form_row(formAgence.adresse) }}
+					</div>
+					<div class="col-md-12">
+						{{ form_row(formAgence.ville) }}
+					</div>
+					<div class="col-md-12">
+						{{ form_row(formAgence.cp) }}
+					</div>
+				</div>
+				{# ---- #}
+				<div class="col-md-6">
+					<div class="col-md-12">
+						{{ form_row(formAgence.photo) }}
+					</div>
+					<div class="col-md-12">
+						{{ form_row(formAgence.descirption) }}
+					</div>
+				</div>
+				{# ---- #}
+			</div>
+			<div class="row">
+				<button class="btn bg-primary text-light col-md-12 my-3">Valider</button>
+			</div>
+		</div>
+		{{ form_end(formAgence)}}
+
+	</section>
+
+{% endblock %}

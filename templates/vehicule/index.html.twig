@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello VehiculeController!
+{% endblock %}
+
+{% block body %}
+	<div class="example-wrapper">
+		<h1>{{ controller_name }}</h1>
+	</div>
+	{% for notification in app.flashes('success') %}
+		<div>{{ notification }}</div>
+	{% endfor %}
+	<table class="table">
+		<thead>
+			<tr>
+				<th scope="col">#</th>
+				<th scope="col">Agence</th>
+				<th scope="col">Titre</th>
+				<th scope="col">Marque</th>
+				<th scope="col">Modele</th>
+				<th scope="col">Description</th>
+				<th scope="col">Photo</th>
+				<th scope="col">Prix</th>
+				<th scope="col">Actions</th>
+			</tr>
+		</thead>
+		<tbody class="table-group-divider">
+			{% for vehicule in vehicules %}
+				<tr>
+					<th scope="row">{{ vehicule.id }}</th>
+					<td>{{ vehicule.ville }}</td>
+					<td>{{ vehicule.titre }}</td>
+					<td>{{ vehicule.marque }}</td>
+					<td>{{ vehicule.modele }}</td>
+					<td>{{ vehicule.description }}</td>
+					<td>
+						<img src="{{ vehicule.photo }}" alt="" width="250">
+					</td>
+					<td>{{ vehicule.prix_journalier }}</td>
+					<td>
+						<a href="{{ path('get_vehicule' , {'id' : vehicule.id } ) }}">Detail</a>
+						<a href="{{ path('put_vehicule' , {'id' : vehicule.id } ) }}">Modifier</a>
+						<a href="{{ path('delete_vehicule' , {'id' : vehicule.id } ) }}">Supprimer</a>
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	{{ form(formVehicules)}}{% endblock %}

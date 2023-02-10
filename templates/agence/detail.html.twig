@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<section id="">
+		<img src="{{ agence.photo }}" alt="" width="500">
+		<p>{{ agence.titre }}	</p>
+		<p>{{ agence.adresse }}	</p>
+		<p>{{ agence.ville }}	</p>
+		<p>{{ agence.cp }}	</p>
+		<p>{{ agence.descirption }}	</p>
+	</section>
+
+	<a href="{{ path('agence') }}">Back</a>
+
+{% endblock %}
