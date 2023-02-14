@@ -20,7 +20,6 @@ class MembreController extends AbstractController
         $membres = $repoMembre->findAll();
         $membre = new Membre;
 
-
         $form = $this->createForm(MembreType::class, $membre);
         $form->handleRequest($request);
 
