@@ -31,7 +31,6 @@ class AgenceController extends AbstractController
 
             return $this->redirectToRoute("agence");
         }
-
         return $this->render('agence/index.html.twig', [
             'controller_name' => 'Page Agence',
             'agences' => $agences,

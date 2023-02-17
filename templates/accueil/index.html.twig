@@ -1,7 +1,48 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AccueilController!{% endblock %}
+{% block title %}Hello AccueilController!
+{% endblock %}
 
 {% block body %}
-
+	<form method="POST">
+		<label>Adresse de départ</label>
+		<select name="agence">
+			{% for value in agences %}
+				<option value='{{ value.id }}'>
+					{{ value.ville }}
+				</option>
+			{% endfor  %}
+		</select>
+		<label>Date de location</label>
+		<input type="datetime-local" name="dateLocation"/>
+		<label>Fin de location</location>
+		<input type="datetime-local" name="dateFin"/>
+		<button>Valider</button>
+	</form>
+	<section class="container d-flex flex-wrap justify-content-around">
+		{% for value in vehicules %}
+			<div class="d-flex flex-column align-items-center">
+				<figure>
+					<img src="{{ value.photo }}" alt="vehicule" width="250" height="150"/>
+					<figcaption class="text-center">
+						{{ value.modele }}
+						{{ value.marque }}
+					</figcaption>
+				</figure>
+				{% if filterVehicule %}
+					<p>{{ value.prix * nbJours }}
+						€ journalier</p>
+					<a class="" href="{{ path('post_commande', { 'idVehicule' : value.idVehicule, 'idAgence' : value.idAgence, 'idUser' : 1, 'prix' : value.prix * nbJours,  'dateLocation' : dateLocation, 'dateFin' : dateFin  } ) }}">
+						Reserver
+					</a>
+				{% else %}
+					<p>{{ value.prix }}
+						€ journalier</p>
+					<a class="">
+						Reserver
+					</a>
+				{% endif %}
+			</div>
+		{% endfor %}
+	</section>
 {% endblock %}

@@ -43,8 +43,19 @@ class VehiculeRepository extends ServiceEntityRepository
     public function findVehiculesAndAgences()
     {
         return $this->createQueryBuilder('v')
-            ->select('v.id', 'v.marque', 'a.ville', 'v.modele', 'v.description', 'v.photo', 'v.prix_journalier', 'v.titre')
+            ->select('v.id as idVehicule', 'a.id as idAgence', 'v.marque', 'a.ville', 'v.modele', 'v.description', 'v.photo', 'v.prix_journalier as prix', 'v.titre')
             ->innerJoin('App\Entity\Agence', 'a', Join::WITH, 'a.id = v.agence')
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findVehiculeByIdAgences($id)
+    {
+        return $this->createQueryBuilder('v')
+            ->select('v.id as idVehicule', 'a.id as idAgence', 'v.marque', 'a.ville', 'v.modele', 'v.description', 'v.photo', 'v.prix_journalier as prix', 'v.titre')
+            ->innerJoin('App\Entity\Agence', 'a', Join::WITH, 'a.id = v.agence')
+            ->andWhere('a.id = :id')
+            ->setParameter('id', $id)
             ->getQuery()
             ->getResult();
     }
