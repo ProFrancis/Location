@@ -7,11 +7,12 @@
 	<form method="POST">
 		<label>Adresse de départ</label>
 		<select name="agence">
+			<option>Select you agency</option>
 			{% for value in agences %}
 				<option value='{{ value.id }}'>
 					{{ value.ville }}
 				</option>
-			{% endfor  %}
+			{% endfor %}
 		</select>
 		<label>Date de location</label>
 		<input type="datetime-local" name="dateLocation"/>
@@ -20,6 +21,20 @@
 		<button>Valider</button>
 	</form>
 	<section class="container d-flex flex-wrap justify-content-around">
+		{# {% for label, flashes in app.session.flashbag.all %}
+			{% for flash in flashes %}
+				{% if ( label == 'success' ) %}
+					<div class="alert alert-success alert-dismissible fade show">
+						{{ flash }}
+					</div>
+				{% elseif ( label == 'error' ) %}
+					<div class="alert alert-danger alert-dismissible fade show">
+						{{ flash }}
+					</div>
+				{% endif %}
+			{% endfor %}
+		{% endfor %} #}
+
 		{% for value in vehicules %}
 			<div class="d-flex flex-column align-items-center">
 				<figure>
@@ -32,7 +47,7 @@
 				{% if filterVehicule %}
 					<p>{{ value.prix * nbJours }}
 						€ journalier</p>
-					<a class="" href="{{ path('post_commande', { 'idVehicule' : value.idVehicule, 'idAgence' : value.idAgence, 'idUser' : 1, 'prix' : value.prix * nbJours,  'dateLocation' : dateLocation, 'dateFin' : dateFin  } ) }}">
+					<a class="" href="{{ path('post_commande', { 'idVehicule' : value.idVehicule, 'idAgence' : value.idAgence, 'idUser' : 1, 'prix' : value.prix * nbJours, 'dateLocation' : dateLocation, 'dateFin' : dateFin } ) }}">
 						Reserver
 					</a>
 				{% else %}

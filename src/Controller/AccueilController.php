@@ -30,6 +30,7 @@ class AccueilController extends AbstractController
 
             $dateLocation = \DateTime::createFromFormat('Y-m-d\TH:i', $request->request->get('dateLocation'));
             $dateFin = \DateTime::createFromFormat('Y-m-d\TH:i', $request->request->get('dateFin'));
+
             $interval = $dateLocation->diff($dateFin);
             $diffDays = $interval->days;
 
